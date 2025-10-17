@@ -1,10 +1,461 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Shivshankar Shet</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivshankar Shet - CTO, Advisor & Platform Strategist</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define the professional color scheme and fonts */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background for contrast */
+        }
+        
+        /* Custom Scrollbar for the main content area */
+        #content-area {
+            max-height: 100vh;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            padding-top: 1rem; /* Ensure padding on top */
+            padding-bottom: 2rem; /* Ensure padding on bottom */
+        }
+        
+        /* Smooth transition for navigation buttons */
+        .nav-item {
+            @apply flex items-center p-4 rounded-xl text-lg font-semibold transition duration-300 transform hover:scale-[1.01] focus:ring-4 focus:ring-cto-accent/50;
+        }
+        /* Custom List Style for Impact (The unified style for all experience bullet points) */
+        .impact-list > li {
+            @apply flex items-start text-gray-700 mb-3;
+        }
+        .impact-list > li::before {
+            content: "◆";
+            @apply text-cto-accent mr-3 text-lg font-bold; /* Use accent color for impact markers */
+        }
+    </style>
 </head>
-<body>
-    <h1>Welcome to Shivshankar Shet's Portfolio</h1>
-    <p>This is a sample GitHub Pages website!</p>
+<body class="flex min-h-screen">
+
+    <!-- Custom Tailwind Configuration: Updated for a richer navy and sharp gold -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cto-primary': '#16243A', /* Richer Dark Navy for Branding */
+                        'cto-accent': '#FFD700',  /* Bright Gold/Amber for Impact */
+                        'cto-secondary': '#eef2ff', /* Light Indigo */
+                        'cto-highlight': '#1D344B', /* Slightly lighter navy for hover/background contrast */
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- FIXED SIDEBAR NAVIGATION (LEFT) - The Brand Anchor -->
+    <div class="hidden lg:block w-72 bg-cto-primary text-white p-6 shadow-2xl sticky top-0 h-screen overflow-y-auto">
+        
+        <!-- Header & Profile -->
+        <header class="text-center mb-10 pt-4">
+            <img class="h-24 w-24 rounded-full mx-auto mb-4 object-cover border-4 border-cto-accent shadow-lg" 
+                 src="https://placehold.co/150x150/16243A/FFD700?text=SS" 
+                 alt="Shivshankar Shet Profile Placeholder">
+            <h1 class="text-3xl font-extrabold tracking-wide text-cto-accent">Shivshankar</h1>
+            <p class="text-2xl font-light text-gray-200">Shet</p>
+            <p class="text-sm text-gray-400 mt-2 border-t border-cto-highlight pt-2">CTO | Advisor | Platform Strategist</p>
+        </header>
+
+        <!-- Navigation Links -->
+        <nav class="space-y-3">
+            <button onclick="showSection('home')" id="nav-home" class="nav-item w-full bg-cto-accent text-cto-primary hover:bg-amber-400">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h4"></path></svg>
+                Executive Profile
+            </button>
+            <button onclick="showSection('services')" id="nav-services" class="nav-item w-full text-gray-300 hover:bg-cto-highlight">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.201 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.8 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.8 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.2 18 16.5 18s-3.332.477-4.5 1.253"></path></svg>
+                Advisory & Strategy
+            </button>
+            <button onclick="showSection('experience')" id="nav-experience" class="nav-item w-full text-gray-300 hover:bg-cto-highlight">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.58 23.58 0 0112 15c-3.18 0-6.23-.74-9-2.245M12 21v-8m0 0l3.75-3.75M12 13.255l3.75-3.75M12 13.255l-3.75-3.75M12 13.255l-3.75-3.75"></path></svg>
+                Impact & Experience
+            </button>
+            <button onclick="showSection('work')" id="nav-work" class="nav-item w-full text-gray-300 hover:bg-cto-highlight">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                Proof of Work
+            </button>
+            <button onclick="showSection('expertise')" id="nav-expertise" class="nav-item w-full text-gray-300 hover:bg-cto-highlight">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                Technical Expertise
+            </button>
+        </nav>
+
+        <!-- Contact Info (Footer of sidebar) -->
+        <footer class="mt-12 pt-6 border-t border-cto-highlight text-sm text-center">
+            <p class="mb-2 text-gray-400">Ready to scale your platform?</p>
+            <a href="mailto:shivshankar.s.shet@gmail.com" class="text-cto-accent hover:underline font-medium">shivshankar.s.shet@gmail.com</a>
+        </footer>
+    </div>
+
+    <!-- MAIN CONTENT AREA (RIGHT) -->
+    <main id="content-area" class="flex-1 p-4 lg:p-10">
+
+        <!-- Mobile Header (Visible on small screens) -->
+        <header class="lg:hidden bg-cto-primary text-white p-4 rounded-xl mb-6 shadow-xl">
+            <h1 class="text-2xl font-extrabold text-cto-accent">Shivshankar Shet</h1>
+            <p class="text-sm text-gray-400">CTO | Platform Strategist</p>
+            <!-- Dropdown for mobile navigation -->
+            <select onchange="showSection(this.value)" class="mt-3 w-full p-2 rounded text-cto-primary bg-white focus:ring-cto-accent focus:border-cto-accent">
+                <option value="home">Executive Profile</option>
+                <option value="services">Advisory & Strategy</option>
+                <option value="experience">Impact & Experience</option>
+                <option value="work">Proof of Work</option>
+                <option value="expertise">Technical Expertise</option>
+            </select>
+        </header>
+
+        <!-- ---------------------------------------------------- -->
+        <!-- SECTION 1: EXECUTIVE PROFILE (HOME) - REVISED FOR STRATEGY -->
+        <!-- ---------------------------------------------------- -->
+        <section id="home" class="content-section bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-t-8 border-cto-accent">
+            <div class="flex items-center space-x-4 mb-8 border-b pb-4">
+                <svg class="w-10 h-10 text-cto-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-10a2 2 0 01-2-2V5a2 2 0 012-2h10a2 2 0 012 2v13a2 2 0 01-2 2z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01"></path></svg>
+                <h2 class="text-4xl font-extrabold text-cto-primary">Executive Profile & Strategic Mandate</h2>
+            </div>
+            
+            <p class="text-xl text-gray-800 leading-relaxed mb-8 border-l-4 border-cto-primary/50 pl-4 italic">
+                Visionary Senior Technology Executive and architect of global-scale, AI-driven, cloud-native platforms, leveraging 20 years of experience at the nexus of <span class="font-bold">business strategy, technology investment, and organizational transformation.</span>
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-10">
+                <div>
+                    <h3 class="text-2xl font-bold text-cto-primary mb-4 border-b pb-2">Key Value Proposition</h3>
+                    <ul class="impact-list">
+                        <!-- FIX APPLIED HERE: Converted literal ** to proper HTML <span> tags with styling -->
+                        <li><span class="font-bold text-cto-primary">Organizational Leadership:</span> Orchestrated <span class="font-bold text-cto-primary">100+ member global technology organizations</span>, aligning R&D, Platform, and Data teams with core business objectives.</li>
+                        <li><span class="font-bold text-cto-primary">P&L Impact:</span> Drove a total of <span class="font-bold text-cto-primary">$30M in annual cloud cost savings</span> by implementing FinOps strategies and architectural governance.</li>
+                        <li><span class="font-bold text-cto-primary">Product Velocity:</span> Championed Architectural Modernization initiatives that enabled new product speed-to-market and enhanced platform scalability to handle <span class="font-bold text-cto-primary">6B+ daily data events.</span></li>
+                        <li><span class="font-bold text-cto-primary">Future-Ready Systems:</span> Guiding organizations through transformation via <span class="font-bold text-cto-primary">AI adoption, strategic platform thinking,</span> and building resilient, cost-efficient cloud architectures.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-cto-primary mb-4 border-b pb-2">Core Contact Information</h3>
+                    <div class="space-y-3 p-4 bg-cto-secondary rounded-lg">
+                        <p class="flex items-center text-gray-700"><svg class="w-5 h-5 mr-3 text-cto-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38-.112-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm-2.518 4.9h-4.997v16h4.997v-16zm-2.497 2.1c0 .88-1.11 1.586-2.48 1.586s-2.48-.706-2.48-1.586c0-.88.112-1.586 2.48-1.586s2.48.706 2.48 1.586zm-2.518 4.9h-4.997v16h4.997v-16zm12.92-1.782c0-3.376-1.765-4.939-4.102-4.939-2.348 0-3.136 1.137-3.416 1.708v-1.472h-4.707c.07.417 0 16 0 16h4.707v-8.152c0-.447.034-.87.158-1.18c.31-.777 1.012-1.586 2.188-1.586 1.54 0 2.215 1.17 2.215 2.879v8.038h4.707c-.035-1.173 0-16 0-16z"/></svg><span class="font-medium ml-2">LinkedIn:</span> www.linkedin.com/in/shivshankarshet</p>
+                        <p class="flex items-center text-gray-700"><svg class="w-5 h-5 mr-3 text-cto-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7"></path></svg><span class="font-medium ml-2">Email:</span> shivshankar.s.shet@gmail.com</p>
+                        <p class="flex items-center text-gray-700"><svg class="w-5 h-5 mr-3 text-cto-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg><span class="font-medium ml-2">Phone:</span> +91-9619915550</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ---------------------------------------------------- -->
+        <!-- SECTION 2: ADVISORY & CONSULTING SERVICES - REVISED FOR STRATEGY -->
+        <!-- ---------------------------------------------------- -->
+        <section id="services" class="content-section hidden bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-t-8 border-cto-accent">
+            <div class="flex items-center space-x-4 mb-8 border-b pb-4">
+                <svg class="w-10 h-10 text-cto-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.201 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.8 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.8 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.2 18 16.5 18s-3.332.477-4.5 1.253"></path></svg>
+                <h2 class="text-4xl font-extrabold text-cto-primary">Strategic Advisory, Consulting & Mentorship</h2>
+            </div>
+            
+            <p class="text-lg text-gray-700 mb-10">
+                I partner with executive leadership to define <span class="font-bold">technical roadmaps aligned to P&L goals</span>, execute global transformations, and drive measurable business impact through strategic platform and AI investments. My focus is on turning technology into a competitive advantage.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="p-6 bg-cto-secondary rounded-xl shadow-lg border-b-4 border-cto-accent transition duration-300 hover:shadow-xl">
+                    <h3 class="text-2xl font-bold text-cto-primary mb-3">Technology Strategy & Roadmapping</h3>
+                    <p class="text-sm text-gray-600 mb-4">Defining the 3-5 year technical vision that directly supports organizational scale, market expansion, and business resilience.</p>
+                    <ul class="text-sm text-gray-700 space-y-2 font-medium">
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> Architectural Governance & Audits</li>
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> Build vs. Buy analysis & Vendor Selection</li>
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> FinOps Implementation & Finanical Impact</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-cto-secondary rounded-xl shadow-lg border-b-4 border-cto-accent transition duration-300 hover:shadow-xl">
+                    <h3 class="text-2xl font-bold text-cto-primary mb-3">Product & Business Enablement via AI</h3>
+                    <p class="text-sm text-gray-600 mb-4">Architecting the foundation for successful Gen AI adoption to create new product capabilities and enhance internal efficiency.</p>
+                    <ul class="text-sm text-gray-700 space-y-2 font-medium">
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> LLM and RAG Architecture design</li>
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> AI-grounded operational systems</li>
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> Data Strategy for ML/AI Pipelines</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 bg-cto-secondary rounded-xl shadow-lg border-b-4 border-cto-accent transition duration-300 hover:shadow-xl">
+                    <h3 class="text-2xl font-bold text-cto-primary mb-3">Organizational Design & Executive Coaching</h3>
+                    <p class="text-sm text-gray-600 mb-4">Guidance for senior engineering leaders and C-suite on team structuring, cultural transformation, and maximizing engineering velocity.</p>
+                    <ul class="text-sm text-gray-700 space-y-2 font-medium">
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> Platform thinking & adoption</li>
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> Engineering Talent Strategy</li>
+                        <li class="flex items-center"><span class="text-cto-primary mr-2">&#9679;</span> DevOps and SRE governance</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ---------------------------------------------------- -->
+        <!-- SECTION 3: IMPACT & EXPERIENCE - REVISED FOR STRATEGY -->
+        <!-- ---------------------------------------------------- -->
+        <section id="experience" class="content-section hidden bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-t-8 border-cto-accent">
+            <div class="flex items-center space-x-4 mb-8 border-b pb-4">
+                <svg class="w-10 h-10 text-cto-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.58 23.58 0 0112 15c-3.18 0-6.23-.74-9-2.245M12 21v-8m0 0l3.75-3.75M12 13.255l3.75-3.75M12 13.255l-3.75-3.75M12 13.255l-3.75-3.75"></path></svg>
+                <h2 class="text-4xl font-extrabold text-cto-primary">Executive Impact & Professional Experience</h2>
+            </div>
+
+            <!-- NIELSEN (REVISED FOR STRATEGIC IMPACT) -->
+            <article class="mb-10 p-6 border-l-8 border-cto-accent/70 bg-cto-secondary rounded-xl shadow-md">
+                <div class="flex justify-between items-start flex-wrap mb-3">
+                    <h3 class="text-2xl font-extrabold text-gray-900">Senior Director of Technology, NIELSEN</h3>
+                    <p class="text-sm font-semibold text-cto-primary mt-1 md:mt-0">Mumbai, INDIA | 2017 - Present</p>
+                </div>
+                <ul class="impact-list">
+                    <li><span class="font-bold text-cto-primary">Financial & Architectural Governance:</span> Drove multi-year FinOps transformation, delivering a total of <span class="font-bold text-cto-primary">$30M in annual cloud cost savings</span> and lowering Run-the-Business (RTB) costs by 28% YoY.</li>
+                    <li><span class="font-bold text-cto-primary">Strategic Platform Architecture:</span> Designed and led the implementation of a global cloud-native platform strategy to power <span class="font-bold text-cto-primary">6B+ daily data events.</span> Achieved 99.98% system availability and a 40% reduction in average API latency.</li>
+                    <li><span class="font-bold text-cto-primary">AI Product Enablement:</span> Built the Model Context Protocol (MCP) server for grounding LLMs (e.g., Claude Sonnet), significantly enhancing metadata content discovery—a key internal product feature.</li>
+                    <li><span class="font-bold text-cto-primary">Product Velocity & Business Agility:</span> Restructured CI/CD and engineering workflows, improving deployment frequency <span class="font-bold text-cto-primary">4X</span> and cutting the time-to-market for new global product launches by <span class="font-bold text-cto-primary">60 Percent.</span></li>
+                </ul>
+            </article>
+
+            <!-- Karza Technologies (REVISED FOR STRATEGIC IMPACT) -->
+            <article class="mb-10 p-6 border-l-8 border-gray-400 bg-gray-100 rounded-xl shadow-md">
+                <div class="flex justify-between items-start flex-wrap mb-3">
+                    <h3 class="text-2xl font-extrabold text-gray-900">Chief Architect / Fractional CTO - Consultant, Karza Technologies</h3>
+                    <p class="text-sm font-medium text-gray-500 mt-1 md:mt-0">Mumbai, INDIA | 2015 - 2017</p>
+                </div>
+                <ul class="impact-list">
+                    <li><span class="font-bold text-cto-primary">Startup Founding Strategy:</span> Defined the foundational technology strategy and created the entire IT backbone, enabling the company to achieve Product Market Fit for its Full KYC product.</li>
+                    <li><span class="font-bold text-cto-primary">Product Development & AI:</span> Guided the team in creating MVPs employing heavy use of AI for gathering meaningful insights from huge data sets to drive core product features.</li>
+                    <li><span class="font-bold text-cto-primary">Ecosystem Expansion:</span> Instrumental in establishing and building relationships with banks and financial institutions to create new partnerships and revenue streams.</li>
+                </ul>
+            </article>
+
+            <!-- Xoriant Technologies (REVISED FOR STRATEGIC IMPACT) -->
+            <article class="mb-10 p-6 border-l-8 border-gray-400 bg-gray-100 rounded-xl shadow-md">
+                <div class="flex justify-between items-start flex-wrap mb-3">
+                    <h3 class="text-2xl font-extrabold text-gray-900">Software Architect, Xoriant Technologies</h3>
+                    <p class="text-sm font-medium text-gray-500 mt-1 md:mt-0">Mumbai, INDIA | 2013 - 2015</p>
+                </div>
+                <ul class="impact-list">
+                    <li><span class="font-bold text-cto-primary">Data Strategy & CoE:</span> Created a **Big Data Centre of Excellence (COE)** within six months, establishing the firm's strategic capabilities in high-volume data processing.</li>
+                    <li><span class="font-bold text-cto-primary">Platform Design:</span> Architected and built a robust **Hadoop Infrastructure platform** and systems to process big volumes of log files, providing strategic direction for technical aspects.</li>
+                    <li><span class="font-bold text-cto-primary">Quality Governance:</span> Collaborated with the Head of Delivery to establish quality assurance processes and standards, improving development discipline firm-wide.</li>
+                </ul>
+            </article>
+            
+            <!-- Optimum Solutions -->
+            <article class="mb-10 p-6 border-l-8 border-gray-400 bg-gray-100 rounded-xl shadow-md">
+                <div class="flex justify-between items-start flex-wrap mb-3">
+                    <h3 class="text-2xl font-extrabold text-gray-900">Senior Consultant, Optimum Solutions (Client: Bank Julius Baer)</h3>
+                    <p class="text-sm font-medium text-gray-500 mt-1 md:mt-0">Singapore | 2012 - 2013</p>
+                </div>
+                <ul class="impact-list">
+                    <li><span class="font-bold text-cto-primary">Critical System Performance:</span> Instrumental in a project that <span class="font-bold text-cto-primary">cut application latency by almost 60%</span> for internal banking applications, directly improving trader efficiency and client experience.</li>
+                </ul>
+            </article>
+            
+            <!-- Calypso Technologies -->
+            <article class="mb-10 p-6 border-l-8 border-gray-400 bg-gray-100 rounded-xl shadow-md">
+                <div class="flex justify-between items-start flex-wrap mb-3">
+                    <h3 class="text-2xl font-extrabold text-gray-900">Lead Software Engineer, Calypso Technologies</h3>
+                    <p class="text-sm font-medium text-gray-500 mt-1 md:mt-0">Mumbai, INDIA | 2011 - 2012</p>
+                </div>
+                <ul class="impact-list">
+                    <li><span class="font-bold text-cto-primary">Product Enhancement:</span> Helped Calypso fine-tune their FX Products and enhanced the core functionality of their Interest Rate Derivative product, directly contributing to product competitiveness.</li>
+                </ul>
+            </article>
+            
+            <!-- Dotcom Team LLC -->
+            <article class="p-6 border-l-8 border-gray-400 bg-gray-100 rounded-xl shadow-md">
+                <div class="flex justify-between items-start flex-wrap mb-3">
+                    <h3 class="text-2xl font-extrabold text-gray-900">Software Consultant, Dotcom Team LLC (Client: Morgan Stanley)</h3>
+                    <p class="text-sm font-medium text-gray-500 mt-1 md:mt-0">Boston, USA | 2005 - 2011</p>
+                </div>
+                <ul class="impact-list">
+                    <li><span class="font-bold text-cto-primary">Core System Reengineering:</span> Enhanced and reengineered Straight-Through Processing (STP) for the optionsTC system, enabling automated trade booking in Mainframes and improving operational efficiency.</li>
+                    <li><span class="font-bold text-cto-primary">Team Leadership:</span> Led a team of 3 developers through the entire project lifecycle, ensuring technical standards and delivery milestones were met.</li>
+                </ul>
+            </article>
+            
+        </section>
+        
+        <!-- ---------------------------------------------------- -->
+        <!-- SECTION 5: PROOF OF WORK (GITHUB REPOS) -->
+        <!-- ---------------------------------------------------- -->
+        <section id="work" class="content-section hidden bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-t-8 border-cto-accent">
+            <div class="flex items-center space-x-4 mb-8 border-b pb-4">
+                <svg class="w-10 h-10 text-cto-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                <h2 class="text-4xl font-extrabold text-cto-primary">Proof of Work: Key Repositories</h2>
+            </div>
+            
+            <p class="text-lg text-gray-700 mb-8">
+                The following repositories showcase hands-on work related to cloud architecture, FinOps automation, and AI/ML platform tooling. These projects illustrate practical application of the advisory services offered.
+            </p>
+
+            <div class="space-y-6">
+                
+                <!-- Repo 1: FinOps Automation Engine -->
+                <div class="p-5 bg-cto-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-bold text-cto-primary mb-2 flex justify-between items-center">
+                        <span>FinOps: Cloud Cost Automation Engine</span>
+                        <a href="#" class="text-sm text-cto-accent hover:underline">View Repo</a>
+                    </h3>
+                    <p class="text-gray-600 mb-3 text-sm">Python/Terraform: Automated service shutdown, reserved instance management, and custom lambda functions to achieve workload-aware scaling on AWS.</p>
+                    <div class="flex space-x-2 text-xs text-gray-500">
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-yellow-500 mr-1"></span> Python</span>
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-blue-500 mr-1"></span> Terraform</span>
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-cto-primary mr-1"></span> AWS</span>
+                    </div>
+                </div>
+
+                <!-- Repo 2: AI Grounding Server -->
+                <div class="p-5 bg-cto-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-bold text-cto-primary mb-2 flex justify-between items-center">
+                        <span>LLM Grounding & Context Server (MCP Demo)</span>
+                        <a href="#" class="text-sm text-cto-accent hover:underline">View Repo</a>
+                    </h3>
+                    <p class="text-gray-600 mb-3 text-sm">TypeScript/Node: A reference architecture for implementing a Model Context Protocol (MCP) server, integrating external APIs and RAG pipelines for grounded LLM responses.</p>
+                    <div class="flex space-x-2 text-xs text-gray-500">
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-blue-700 mr-1"></span> TypeScript</span>
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-red-600 mr-1"></span> Node.js</span>
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-green-500 mr-1"></span> RAG</span>
+                    </div>
+                </div>
+
+                <!-- Repo 3: K8s Observability Stack -->
+                <div class="p-5 bg-cto-secondary rounded-xl shadow-lg hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-bold text-cto-primary mb-2 flex justify-between items-center">
+                        <span>Kubernetes Observability Blueprint (EKS)</span>
+                        <a href="#" class="text-sm text-cto-accent hover:underline">View Repo</a>
+                    </h3>
+                    <p class="text-gray-600 mb-3 text-sm">Helm/YAML: Deployable configuration for a complete Prometheus, Grafana, and Alertmanager stack on Amazon EKS for real-time SRE monitoring and alerting.</p>
+                    <div class="flex space-x-2 text-xs text-gray-500">
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-indigo-500 mr-1"></span> Kubernetes</span>
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-orange-500 mr-1"></span> Prometheus</span>
+                        <span class="flex items-center"><span class="w-2 h-2 rounded-full bg-pink-500 mr-1"></span> Helm</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ---------------------------------------------------- -->
+        <!-- SECTION 4: TECHNICAL EXPERTISE - REVISED FOR STRATEGY -->
+        <!-- ---------------------------------------------------- -->
+        <section id="expertise" class="content-section hidden bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border-t-8 border-cto-accent">
+            <div class="flex items-center space-x-4 mb-8 border-b pb-4">
+                <svg class="w-10 h-10 text-cto-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                <h2 class="text-4xl font-extrabold text-cto-primary">Core Technical Expertise & Strategic Domains</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Strategy & Platforms -->
+                <div>
+                    <h3 class="text-2xl font-bold text-cto-primary mb-4 border-l-4 border-cto-accent pl-3">Executive & Business Alignment</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="tag">Enterprise Architecture</span>
+                        <span class="tag">P&L & Financial Impact</span>
+                        <span class="tag">Technology Investment Strategy</span>
+                        <span class="tag">Product Visioning</span>
+                        <span class="tag">Organizational Design</span>
+                        <span class="tag">Systems Thinking</span>
+                    </div>
+                </div>
+
+                <!-- AI & Data Engineering -->
+                <div>
+                    <h3 class="text-2xl font-bold text-cto-primary mb-4 border-l-4 border-cto-accent pl-3">AI Engineering & Data Strategy</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="tag">LLM Grounding Architectures</span>
+                        <span class="tag">Generative AI Adoption</span>
+                        <span class="tag">Agentic AI Workflows</span>
+                        <span class="tag">Big Data Pipelines (6B+ Events)</span>
+                        <span class="tag">AI/ML Strategy</span>
+                        <span class="tag">Hadoop Infrastructure</span>
+                    </div>
+                </div>
+
+                <!-- Cloud & Infrastructure -->
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold text-cto-primary mb-4 border-l-4 border-cto-accent pl-3">Cloud, Platform & Delivery Governance</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="tag">Cloud-Native Architectures</span>
+                        <span class="tag">AWS (Deep Expertise)</span>
+                        <span class="tag">FinOps / Cost Governance</span>
+                        <span class="tag">Kubernetes / EKS</span>
+                        <span class="tag">Terraform / IaC</span>
+                        <span class="tag">Platform Engineering</span>
+                        <span class="tag">SRE & Incident Management</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <style>
+                /* Tag Styling */
+                .tag {
+                    @apply px-4 py-1 bg-cto-accent/10 text-cto-primary rounded-full text-sm font-medium shadow-sm border border-cto-accent/50 transition cursor-pointer hover:bg-cto-accent/30;
+                }
+            </style>
+        </section>
+
+    </main>
+    
+    <script>
+        // --- Single-Page Application Logic ---
+
+        // Added 'work' to the sections list
+        const sections = ['home', 'services', 'experience', 'work', 'expertise'];
+
+        /**
+         * Switches the active content section and updates navigation styling.
+         * @param {string} activeSectionId - The ID of the section to display.
+         */
+        function showSection(activeSectionId) {
+            // Validate the requested section ID
+            if (!sections.includes(activeSectionId)) {
+                console.error("Invalid section ID:", activeSectionId);
+                return;
+            }
+
+            // 1. Hide all sections and remove active class from buttons
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                const navButton = document.getElementById(`nav-${id}`);
+                
+                if (section) {
+                    section.classList.add('hidden');
+                }
+                if (navButton) {
+                    navButton.classList.remove('bg-cto-accent', 'text-cto-primary', 'hover:bg-amber-400');
+                    navButton.classList.add('text-gray-300', 'hover:bg-cto-highlight');
+                }
+            });
+
+            // 2. Show the active section and add active class to its button
+            const activeSection = document.getElementById(activeSectionId);
+            const activeButton = document.getElementById(`nav-${activeSectionId}`);
+            
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+            }
+            if (activeButton) {
+                activeButton.classList.add('bg-cto-accent', 'text-cto-primary', 'hover:bg-amber-400');
+                activeButton.classList.remove('text-gray-300', 'hover:bg-cto-highlight');
+            }
+            
+            // Scroll to the top of the content area when switching sections
+            document.getElementById('content-area').scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize the app to show the home section on load
+        window.onload = () => {
+            showSection('home');
+        };
+    </script>
 </body>
 </html>
